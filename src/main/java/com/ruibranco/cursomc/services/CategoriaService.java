@@ -1,9 +1,12 @@
 package com.ruibranco.cursomc.services;
 
+import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+
 import com.ruibranco.cursomc.domain.Categoria;
 import com.ruibranco.cursomc.repositories.CategoriaRepository;
 import com.ruibranco.cursomc.services.exceptions.DataIntegrityException;
@@ -37,7 +40,11 @@ public class CategoriaService {
 		try {
 			repo.deleteById(id);
 		} catch ( DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possivel excluir uma categoria que possui produos");
+			throw new DataIntegrityException("Não é possivel excluir uma categoria que possui produtos");
 		}
+	}
+	
+	public List<Categoria> findAll() {
+		return repo.findAll();
 	}
 }
