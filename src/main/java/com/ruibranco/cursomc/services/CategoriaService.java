@@ -2,13 +2,16 @@ package com.ruibranco.cursomc.services;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+
 import com.ruibranco.cursomc.domain.Categoria;
+import com.ruibranco.cursomc.dto.CategoriaDto;
 import com.ruibranco.cursomc.repositories.CategoriaRepository;
 import com.ruibranco.cursomc.services.exceptions.DataIntegrityException;
 import com.ruibranco.cursomc.services.exceptions.ObjectNotFoundException;
@@ -52,5 +55,9 @@ public class CategoriaService {
 	public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+	
+	public Categoria fromDTO(CategoriaDto objDto) {
+		return new Categoria(objDto.getId(), objDto.getNome());
 	}
 }
