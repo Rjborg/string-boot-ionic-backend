@@ -2,6 +2,8 @@ package com.ruibranco.cursomc.dto;
 
 import java.io.Serializable;
 
+import com.ruibranco.cursomc.domain.Produto;
+
 public class ProdutoDto implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -12,6 +14,12 @@ public class ProdutoDto implements Serializable{
 	public ProdutoDto() {
 	}
 
+	public ProdutoDto(Produto obj) {
+		id = obj.getId();
+		nome = obj.getNome();
+		preco = obj.getPreco();
+	}
+	
 	public Integer getId() {
 		return id;
 	}
